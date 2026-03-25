@@ -151,17 +151,28 @@ flex:1;
 display:flex;
 flex-direction:column;
 gap:12px;
+min-width:0;
+min-height:0;
 }
 
 .chat-box{
 flex:1;
 overflow-y:auto;
+overflow-x:hidden;
 padding:16px;
 background:linear-gradient(165deg,rgba(15,23,42,0.68),rgba(30,41,59,0.52));
 border-radius:14px;
 border:1px solid rgba(226,232,240,0.18);
-scrollbar-width:thin;
-scrollbar-color:#64748b transparent;
+scrollbar-width:none;
+-ms-overflow-style:none;
+min-width:0;
+min-height:0;
+overflow-wrap:anywhere;
+}
+
+.chat-box::-webkit-scrollbar{
+width:0;
+height:0;
 }
 
 .empty-state{
@@ -186,6 +197,7 @@ line-height:1.5;
 
 .message{
 max-width:78%;
+width:fit-content;
 padding:11px 14px;
 margin-bottom:12px;
 border-radius:12px;
@@ -193,6 +205,16 @@ font-size:14px;
 line-height:1.45;
 white-space:pre-wrap;
 word-break:break-word;
+overflow-wrap:anywhere;
+min-width:0;
+}
+
+.message > div,
+.message-meta{
+max-width:100%;
+word-break:break-word;
+overflow-wrap:anywhere;
+display:block;
 }
 
 .message-meta{
@@ -202,6 +224,25 @@ opacity:0.78;
 margin-top:6px;
 }
 
+.message-content{
+max-width:100%;
+display:block;
+word-break:break-word;
+overflow-wrap:anywhere;
+}
+
+.message.bot .message-content{
+max-height:260px;
+overflow-y:auto;
+overscroll-behavior:contain;
+scrollbar-width:none;
+-ms-overflow-style:none;
+}
+
+.message.bot .message-content::-webkit-scrollbar{
+width:0;
+height:0;
+}
 .message.bot.thinking{
 opacity:0.9;
 animation:pulse 1.3s ease-in-out infinite;

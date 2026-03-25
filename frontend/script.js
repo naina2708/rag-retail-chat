@@ -114,6 +114,7 @@ msg.classList.add("thinking")
 }
 
 const content=document.createElement("div")
+content.className = "message-content"
 content.innerText=text
 
 const meta=document.createElement("small")
